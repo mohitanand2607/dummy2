@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="dummy_2-test-suite.xml" />
+	<munit:test name="dummy_2-test-suite-dummy_2FlowTest" doc:id="1d8a7adb-5a32-4262-8a5e-bb98789c1645" description="Test">
+		<munit:execution >
+			<munit:set-null-payload doc:name="Set null payload" doc:id="27849db7-7f5c-49e5-a599-6884432ec092" />
+			<flow-ref doc:name="Flow-ref to dummy_2Flow" doc:id="e80f2826-3bd9-4471-b49a-1d411f25b2a7" name="dummy_2Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="659afa3c-3ae0-4216-afba-7a61d42d6a88" actual="#[payload]" expected='#["great!!!"]' message='"payload not as expected"'/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy_2-test-suite-dummy_2FlowTest1" doc:id="68ba9c5a-3c47-4b06-bcd3-9e7b53f340dc" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummy_2Flow" doc:id="6186642a-13da-4309-831d-87cc9dbf5896" name="dummy_2Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="8e5cd806-c87c-422a-8444-af816eb523bc" message='"payload cannot be null"' expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy_2-test-suite-dummy_2FlowTest2" doc:id="b0892fea-2263-4546-b754-410cfb6f90f3" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummy_2Flow" doc:id="b317c254-032c-4764-b91f-e49022499871" name="dummy_2Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="d8fb2e3d-392f-4bad-a248-68457c04e0d7" is="#[MunitTools::startsWith('g')]" message='"payload does not fulfill the condition"' expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy_2-test-suite-dummy_2FlowTest4" doc:id="b2b997ac-1cb7-47a5-afb0-46ff4bde148b" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummy_2Flow" doc:id="a2044f89-4abf-4bd4-9902-efa899faf0e2" name="dummy_2Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="1b59a238-06cd-4479-bdcc-ceb502408cdb" is="#[MunitTools::notNullValue()]" message='"check payload"' expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
